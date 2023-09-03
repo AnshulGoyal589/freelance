@@ -1,0 +1,55 @@
+<head>
+  <style>
+    #li{
+      display: inline-block;
+      color:white;
+      margin:auto 10px;
+    }
+    #a{
+      color:white;
+      text-decoration: none;
+      display: inline-block;
+    }
+  </style>
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="border:2px solid white;background-color:#000814 !important;height:80px;z-index: 1001 !important;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarText" >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex;flex-direction: row;justify-content: center;align-items: center;gap: 30px;">
+          <li class="nav-item" style="height:fit-content !important;">
+            <img style="width:65px;height:65px;position: relative;position: relative;bottom:5px;" src="https://i.pinimg.com/236x/26/52/1c/26521c92c945a36497af5917359c5588--monogram-logo-nespresso.jpg" alt="">
+            <a class="navbar" style="color: white;font-size: 36px;position: relative;display: inline-block;text-decoration: none;">NexusMart</a>
+          </li>
+          <li class="nav-item" style="margin-left: 50px;">
+            
+              <a href="/products" style="text-decoration: none;color:white;position:relative;">Home</a>   
+          </li>
+          <li class="nav-item">
+                <a href="/products/add" style="text-decoration: none;color:white;position:relative;">Add Product</a>
+          </li>
+          <% if(currentUser){ %>
+            <i class="fa-solid fa-cart-shopping fa-2xl" style="color:white;position: relative;top:10px " onclick="window.location.href='/products/<%= currentUser._id  %>/cart'">
+            
+            <sup><span class="translate-middle badge rounded-pill bg-danger">
+              <%=currentUser.totalItems  %>
+            </span></sup></i>
+            <% } %>
+        </ul>
+        <form class="d-flex " role="search"  style="position: relative;right:80px">
+          <input class="form-control me-2 col-12" type="search" placeholder="Search" aria-label="Search" id="searchBar">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <% if(!currentUser){ %>
+          <ul>
+            <li id="li"><a href="/login" id="a">Login</a></li>
+            <li id="li"><a href="/register" id="a">SignUp</a></li>
+          </ul>
+        <% }else{ %>
+            <ul style="display: flex;align-items: center;justify-content: center;padding-top: 7px;">
+              <li id="li" ><i class="fa-solid fa-user fa-xl"></i><div style="display: inline-block;margin-left: 10px;width: fit-content !important;height: fit-content !important; text-align: center;"><%= currentUser.username  %></div></li>
+              <li id="li"><a href="/logout" id="a">Logout</a></li>
+            </ul>
+        <% } %>
+      </div>
+    </div>
+</nav>

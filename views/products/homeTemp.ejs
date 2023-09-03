@@ -1,0 +1,87 @@
+<% layout('layout/boilerplate') -%>
+<head>
+    <style>
+        #delete{
+            /* background-color:darkred; */
+            width: fit-content;
+            padding: 5px;
+            border:2px solid #D3D3D3;
+            /* color:white; */
+            background-color:#D3D3D3;
+            text-decoration: none;
+            text-align: center;
+            color:red;
+            display: inline-block;
+        }
+        #show{
+            /* background-color: darkgreen; */
+            width:fit-content;
+            padding: 5px;
+            color:green;
+            background-color: #D3D3D3;
+            text-decoration: none;
+            box-shadow: none;
+            border: none;
+            text-align: center;
+            display: inline-block;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+        #hero:hover{
+            box-shadow:
+                5px 5px 10px white,
+                -5px -5px 10px white;
+            /* background-color: #f1faee !important; */
+            border: 5px solid black !important;
+            z-index: 1000;
+        }
+        img:hover{
+            transform: scale(1.1);
+            transition-duration: 0.7s;
+        }
+    </style>
+</head>
+
+
+    
+
+<div style="width:100%;height:100%;display: flex;flex-wrap: wrap">
+
+    <br>
+    <%for(let product of products){%>
+        <div id="hero" onclick="window.location.href='/products/<%=product._id%>'" style="border:2px solid black;width:350px;display: flex;flex-direction: column;justify-content:center;align-items: center;background-color:#D3D3D3; margin-left:20px;margin-top: 20px;">
+            <div style="height:200px;width:345px;width:100%;overflow: hidden;" id="img"><img src="<%=product.img%>" alt="image not available" style="height:200px;width:345px;width:100%"></div>
+            <h3><%= product.name  %></h3>
+            <!-- <i class="fa-regular fa-heart fa-2xl " style="color: #ff0000;display: inline-block;position: relative;left:140px;bottom:10px"></i> -->
+            <i class="fa-regular fa-heart fa-2xl" id="heartIcon" style="color: #ff0000;display: inline-block;position: relative;left:140px;bottom:10px" onclick="toggleHeartClass(event)"></i>
+            <h4>Price: <%= product.price  %>₹</h4>
+            <h5><%= product.desc  %></h5>
+            <div>
+                <form action="/products/<%=product._id%>?_method=DELETE" method="post" style="display: inline-block;">
+                    <button  id="delete" ><i class="fa-solid fa-trash-can fa-xl" style="color: #ff2600;background-color:#D3D3D3 ;"></i><br>DELETE</button>
+                </form>
+                <form action="/products/<%=product._id%>" method="get" style="display: inline-block;">
+                    <button  id="show" ><i class="fa-solid fa-circle-info fa-2xl" style="color:green;"></i><br>DETAILS</button>
+                </form>
+            </div>
+        </div>
+    <%}%>
+
+
+    
+
+
+</section>
+<script>
+    function toggleHeartClass(event) {
+      var heartIcon = event.target;
+      if (heartIcon.classList.contains("fa-regular")) {
+        heartIcon.classList.remove("fa-regular");
+        heartIcon.classList.add("fa-solid");
+      } else {
+        heartIcon.classList.remove("fa-solid");
+        heartIcon.classList.add("fa-regular");
+      }
+    }
+  </script>
+
