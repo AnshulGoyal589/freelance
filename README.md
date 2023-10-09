@@ -32,7 +32,9 @@ Our e-commerce website is designed to provide an intuitive and seamless shopping
 ## Usage
 
 1. **Clone the Repository**:
-   'git clone https://github.com/your-username/ecommerce-website.git'
+   ```bash
+   git clone https://github.com/your-username/ecommerce-website.git
+
    
 
 3. **Install Dependencies**:
