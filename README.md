@@ -35,7 +35,7 @@ Of course! If your e-commerce website is not built using React, we'll modify the
 
 Certainly! Here's a concise "Usage" section for your README.md:
 
-```markdown
+
 ## Usage
 
 1. **Clone the Repository**:
@@ -62,7 +62,6 @@ Certainly! Here's a concise "Usage" section for your README.md:
 6. **Admin Dashboard**:
    Access the admin dashboard at `/admin` to manage the website.
 
-```
 
 Happy shopping!
 
