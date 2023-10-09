@@ -13,7 +13,10 @@ const userSchema=new mongoose.Schema({
         }
     ],
     totalItems:Number,
-    totalCost:Number
+    totalCost:Number,
+    phoneNumber:Number,
+    identity:String,
+    googleId:String
 })
 
 userSchema.plugin(passportLocalMongoose);

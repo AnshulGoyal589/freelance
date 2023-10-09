@@ -121,18 +121,28 @@
 <div id="card">
 
     <div id="img"><img src="<%=product.img%>" alt="image not available"></div>
-    <h2 style="margin-top:15px;"><%= product.name  %></h2>
+    <h2 style="margin-top:15px;"><%= product.name  %></h2>+
     <h4>Price: <%= product.price  %>₹</h4>
     <h5 style="margin-bottom: 19px;text-align: center;"><%= product.desc  %></h5>
     <!-- <h5 style="color: green;">Average Rating: <%= product.avgRating%> &starf; </h5> -->
     <div id="changes">
-        <form action="/products/<%=product._id%>?_method=DELETE" method="post" id="changesForm">
         
-            <button  id="delete" ><i class="fa-solid fa-trash fa-2xl " style="color: #ed1707;width: fit-content;height:fit-content"></i><br><br>DELETE</button>
-        </form>
-        <a id="update" href="/products/<%=product._id%>/edit"><i class="fa-solid fa-pen fa-2xl" style="color: blue;"></i><br><br>UPDATE</a>
         <% if(currentUser){ %>    
+        <% if(currentUser.identity==='seller'){ %>    
+            <form action="/products/<%=product._id%>?_method=DELETE" method="post" id="changesForm">
+                <button  id="delete" ><i class="fa-solid fa-trash fa-2xl " style="color: #ed1707;width: fit-content;height:fit-content"></i><br><br>DELETE</button>
+            </form>
+        <% } %>
+        <% } %>
+        <% if(currentUser){ %>
+        <% if(currentUser.identity==='seller'){ %>
+           <a id="update" href="/products/<%=product._id%>/edit"><i class="fa-solid fa-pen fa-2xl" style="color: blue;"></i><br><br>UPDATE</a>
+        <% } %>
+        <% } %>
+        <% if(currentUser){ %>    
+        <% if(currentUser.identity==='buyer'){ %>    
             <a id="addToCart" href="/products/<%=product._id%>/<%= currentUser._id%>/cart"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: green;"></i><br><br>ADD</a>  
+        <% } %>
         <% } %>
     </div>
 

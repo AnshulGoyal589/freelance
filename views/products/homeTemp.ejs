@@ -34,6 +34,7 @@
             /* background-color: #f1faee !important; */
             border: 5px solid black !important;
             z-index: 1000;
+            cursor: pointer;
         }
         img:hover{
             transform: scale(1.1);
@@ -57,9 +58,13 @@
             <h4>Price: <%= product.price  %>₹</h4>
             <h5><%= product.desc  %></h5>
             <div>
-                <form action="/products/<%=product._id%>?_method=DELETE" method="post" style="display: inline-block;">
-                    <button  id="delete" ><i class="fa-solid fa-trash-can fa-xl" style="color: #ff2600;background-color:#D3D3D3 ;"></i><br>DELETE</button>
-                </form>
+                <% if(currentUser){ %> 
+                <% if(currentUser.identity==='seller'){ %> 
+                    <form action="/products/<%=product._id%>?_method=DELETE" method="post" style="display: inline-block;">
+                        <button  id="delete" ><i class="fa-solid fa-trash-can fa-xl" style="color: #ff2600;background-color:#D3D3D3 ;"></i><br>DELETE</button>
+                    </form>
+                <% } %>
+                <% } %>
                 <form action="/products/<%=product._id%>" method="get" style="display: inline-block;">
                     <button  id="show" ><i class="fa-solid fa-circle-info fa-2xl" style="color:green;"></i><br>DETAILS</button>
                 </form>

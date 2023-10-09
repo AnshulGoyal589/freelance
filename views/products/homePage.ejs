@@ -1,0 +1,132 @@
+
+<!-- 
+ <!DOCTYPE html>
+<html lang="en"> -->
+
+<% layout('layout/boilerplate') -%>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- 
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #li{
+          display: inline-block;
+          color:white;
+          height: fit-content;
+          position: relative;
+          left: 550px;
+
+        }
+        #a{
+          color:white;
+          text-decoration: none;
+          display: inline-block;
+          justify-content: center;
+          align-items: center;
+        }
+        #abc{
+          height: fit-content;
+          display: flex;
+          gap: 24px;
+          padding-top: 11px;
+        }
+      </style>
+</head> -->
+
+<body class=" text-center text-white bg-dark" style="display: flex !important ; flex-direction: column !important ;background-image: url('');color:black !important; font-size: 25px;">
+    <div class="cover-container d-flex w-100 h-100  mx-auto flex-column" style="margin-top: 50px;" >
+        <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-bottom: 60px;border:2px solid white;background-color:#000814 !important;height:80px;z-index: 1001 !important;display: flex;">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarText" >
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex;flex-direction: row;justify-content: center;align-items: center;gap: 30px;">
+                  <li class="nav-item" style="height:fit-content !important;">
+                    <img style="width:65px;height:65px;position: relative;position: relative;bottom:5px;" src="https://i.pinimg.com/236x/26/52/1c/26521c92c945a36497af5917359c5588--monogram-logo-nespresso.jpg" alt="">
+                    <a class="navbar" style="color: white;font-size: 36px;position: relative;display: inline-block;text-decoration: none;">NexusMart</a>
+                  </li>
+                  <li class="nav-item" style="margin-left: 50px;">
+                    
+                      <a href="/" style="text-decoration: none;color:white;position:relative;">Home</a>   
+                  </li>
+                  <li class="nav-item" >
+                    
+                      <a href="/products" style="text-decoration: none;color:white;position:relative;">Products</a>   
+                  </li>
+                  <li class="nav-item">
+                        <a href="/products/add" style="text-decoration: none;color:white;position:relative;">Add Product</a>
+                  </li>
+                  <% if(currentUser){ %>
+                      <%=currentUser.totalItems  %>
+                    <% } %>
+                </ul>
+                </ul>
+                <% if(!currentUser){ %>
+                  <ul id="abc">
+                    <li id="li"><a href="/login" id="a">Login</a></li>
+                    <li id="li"><a href="/register" id="a">SignUp</a></li>
+                  </ul>
+                <% }else{ %>
+                    <ul style="display: flex;align-items: center;justify-content: center;padding-top: 7px;">
+                      <li id="li" ><i class="fa-solid fa-user fa-xl"></i><a href="userProfile" style="text-decoration: none;color:white; text-align: center;;">
+                        <%= currentUser.username  %> 
+                      </a></li>
+                      <li id="li"><a href="/logout" id="a">Logout</a></li>
+                    </ul>
+                <% } %>
+              </div>
+            </div>
+        </nav> -->
+        
+        <!-- <header class="mb-auto">
+            <div>
+                <h3 class="float-md-left mb-0" >Nexus Mart</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-right" >
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="/products">Products</a>
+                    <% if(!currentUser) { %>
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/register">Register</a>
+                    <% } else { %>
+                    <a class="nav-link" href="/logout">Logout</a>
+                    <% } %>
+                </nav>
+            </div>
+        </header> -->
+        <main class="px-3" >
+            <h1>Shopping Cart</h1>
+            <p class="lead" > Welcome to Shopping Cart! <br> Jump right in and explore our many products. <br>
+                Feel free to add some of your own and comment on others!</p>
+            <!-- <a href="/products" class="btn btn-sm btn-secondary font-weight-bold border-white bg-white ">View
+                Products</a> -->
+        </main>
+
+        <footer class="mt-auto text-white-50" style="font-size: 20px;">
+            <p>All Right Reserved &copy; 2023 </p>
+        </footer>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

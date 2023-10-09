@@ -41,8 +41,9 @@ router.get("/products/:productId/:userId/cart",isLoggedIn,async (req,res)=>{
 router.get("/products/:userId/cart",isLoggedIn,async (req,res)=>{
     const {userId}=req.params;
     const user=await User.findById(userId); 
+    const IDD=userId;
     
-    res.render("cart/cartTemp",{user});
+    res.render("cart/cartTemp",{user,IDD});
 })
 router.get("/products/user/:updatedValue/:itemId/cart",isLoggedIn, async (req,res)=>{
     const userId=req.user._id;

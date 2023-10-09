@@ -13,7 +13,8 @@ const productSchema = new mongoose.Schema({
             ref : "Review"
         }
     ],
-    status:String
+    status:String,
+    quantity:Number
 
 })
 

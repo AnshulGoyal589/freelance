@@ -24,6 +24,18 @@ router.get("/", async (req,res)=>{
     const products=await Product.find({});
     res.render("products/homeTemp",{products});
 })
+router.post("/specific", async (req,res)=>{   
+    
+    const {input}=req.body;
+    const products=await Product.find({name:input});
+    res.render("products/homeTemp",{products});
+})
+router.get("/sort/:basis", async (req,res)=>{   
+    const {basis}=req.params;
+    const products = await Product.find().sort(basis);
+    // const products=await Product.find({name:input});
+    res.render("products/homeTemp",{products});
+})
 router.post("/new", async (req,res)=>{  
     const product =req.body;
 
@@ -35,7 +47,8 @@ router.post("/new", async (req,res)=>{
     }
     res.redirect("/products");
 })
-router.get("/add",isLoggedIn, (req,res)=>{           
+router.get("/add",isLoggedIn, (req,res)=>{    
+    console.log("OOOOOOOOOOOOOOOOOOOOOO:    ",req.isAuthenticated);       
     res.render("products/addTemp");
 })
 router.delete("/:productId",isLoggedIn ,async (req,res)=>{
