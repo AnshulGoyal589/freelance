@@ -28,13 +28,13 @@ Our e-commerce website is designed to provide an intuitive and seamless shopping
 - **Order Management**: Process and manage orders efficiently, update statuses, and handle refunds if needed.
 - **Customer Management**: Access customer data and history, and manage user accounts.
 
-```markdown
+
 ## Usage
 
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/your-username/ecommerce-website.git
-   ```
+   ``` 
 
 2. **Install Dependencies**:
    ```bash
@@ -55,7 +55,7 @@ Our e-commerce website is designed to provide an intuitive and seamless shopping
 6. **Admin Dashboard**:
    Access the admin dashboard at `/admin` to manage the website.
 
-```
+
 
 This version is shorter while retaining the essential steps for using the e-commerce website.
 Happy shopping!
