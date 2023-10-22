@@ -6,11 +6,12 @@
             color: white;
         }
         #form {
-            border: 2px solid lightblue;
+            border: 2px solid black;
             width: fit-content;
             width: 600px;
             margin-top: 40px;
             padding: 20px;
+            background-color: #edede9;
         }
         input {
             width: 100%;
@@ -21,7 +22,7 @@
         }
         label {
             margin-top: 10px;
-            color: lightblue;
+            color: black;
         }
         button {
             background-color: blue;
@@ -39,10 +40,75 @@
             transform: translate(450px, 0); /* Move 10 pixels to the right on hover */
         }
     </style>
-</head>
+</head> 
+<!-- <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #hero {
+            margin: 20px auto;
+        }
+
+        #form {
+            border: 1px solid #007bff;
+            background-color: #fff;
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .hoverEnable {
+            position: relative;
+            left: 0;
+            top: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .hoverEnable:hover {
+            transform: translateX(10px);
+        }
+    </style>
+</head> -->
+
+
 <body>
     <div id="hero">
-        <h1 style="width: fit-content;margin: 20px auto;">ADD THE PRODUCT</h1>
+        <h1 style="width: fit-content;margin: 20px auto;color: black;">ADD THE PRODUCT</h1>
         <form id="form" action="/products/new" method="post">
             <fieldset>
                 <label for="name">Name</label><br>

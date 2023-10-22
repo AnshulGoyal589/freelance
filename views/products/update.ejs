@@ -18,7 +18,7 @@
         }
         input{
             height:40px;
-            width: 700px;
+            width: 350px;
         }
         fieldset{
             padding:20px;
@@ -26,8 +26,8 @@
     </style>
 </head>
 <div id="heading" >UPDATE DETAILS</div>
-<form action="/products/<%= product._id%>?_method=PATCH" method="post">
-    <fieldset style="border:2px solid green; margin:20px auto ; width:fit-content;">
+<form action="/products/<%= product._id%>?_method=PATCH" method="post"  >
+    <fieldset style="border:2px solid green; margin:20px auto ; width:fit-content;border-radius: 20px;background-color: white;">
 
 
         <label for="name"  >Name</label>
@@ -47,7 +47,7 @@
         <br>
         <label for="desc" >Description</label>
         <br>
-        <input  style="width:700px; height:30px" type="text" class="i" value="<%= product.desc %>"  id="desc" name="desc">
+        <input  style="width:350px; height:30px" type="text" class="i" value="<%= product.desc %>"  id="desc" name="desc">
         <br>
         <br>
         <button style="background-color:green;color:white;width:100%;">SUBMIT</button>

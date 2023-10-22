@@ -16,6 +16,7 @@ const products=
     "img": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb0%2F54%2Fb054eea1c1bb844f294c524fdcfe78ead033ff23.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_jacketscoats_jackets%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
     "price": 5000,
     "desc": "Jacket in cotton corduroy with a lined collar. Buttons down the front, a yoke front and back and flap front pockets with a button."
+    ,"frequencyOfPurchase":1
 },
 {
     "top":0,
@@ -70,6 +71,7 @@ const products=
     "img": "https://m.media-amazon.com/images/I/91fonhAtoAL._SX679_.jpg",
     "price": 17000,
     "desc": "Samsung Galaxy M34 5G (Midnight Blue,6GB,128GB)|120Hz sAMOLED Display|50MP Triple No Shake Cam|6000 mAh Battery|4 Gen OS Upgrade & 5 Year Security Update|12GB RAM with RAM+"
+    ,"frequencyOfPurchase":1
 },
 {
     "top":0,
@@ -124,6 +126,7 @@ const products=
     "img": "https://m.media-amazon.com/images/I/61MosTpKiPL._AC_CR0%2C0%2C0%2C0_SX615_SY462_.jpg",
     "price": 4000,
     "desc": "Sony Srs-Xb13 Wireless Extra Bass Portable Bluetooth Speaker with 16 Hours Battery Life, Type-C, Ip67 Waterproof, Dustproof, Speaker with Mic, Loud Audio for Phone Calls/Work from Home (Blue), Small"
+    ,"frequencyOfPurchase":1
 },
 {
     "top":0,
@@ -169,6 +172,7 @@ const products=
     "img": "https://m.media-amazon.com/images/I/81EBE42CThL._UX569_.jpg",
     "price": 2300,
     "desc": "W for Woman Rayon Regular fit suit"
+    ,"frequencyOfPurchase":1
 },
 {
     "top":0,
@@ -202,6 +206,7 @@ const products=
     "img": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR4lO_yM8NqtD4Eiv8IFvBgfWg4tx2197BvtA5ewI90H0TVbkDin-0wk1yLiU_vBSwACPjBpEiQbeeZH6CFiy5moUVj43biJJrLQmc85yxurWPEp59eXvLu4p6QHL0LKRj2Qoemkw&usqp=CAc",
     "price": 9500,
     "desc": "Oppo Enco X Bluetooth Truly Wireless in Ear Earbuds with Mic (White)"
+    ,"frequencyOfPurchase":1
 },
 {
     "top":0,

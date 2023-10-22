@@ -16,43 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 
-<body class=" text-center text-white bg-dark" style="display: flex !important ; flex-direction: column !important ;background-image: url('');color:black !important; font-size: 25px;">
-    <div class="cover-container d-flex w-100 h-100  mx-auto flex-column" style="margin-top: 50px;" >
-
-                  <% if(currentUser){ %>
-                      <%=currentUser.totalItems  %>
-                    <% } %>
-                </ul>
-                </ul>
-                <% if(!currentUser){ %>
-                  <ul id="abc">
-                    <li id="li"><a href="/login" id="a">Login</a></li>
-                    <li id="li"><a href="/register" id="a">SignUp</a></li>
-                  </ul>
-                <% }else{ %>
-                    <ul style="display: flex;align-items: center;justify-content: center;padding-top: 7px;">
-                      <li id="li" ><i class="fa-solid fa-user fa-xl"></i><a href="userProfile" style="text-decoration: none;color:white; text-align: center;;">
-                        <%= currentUser.username  %> 
-                      </a></li>
-                      <li id="li"><a href="/logout" id="a">Logout</a></li>
-                    </ul>
-                <% } %>
-              </div>
-            </div>
-        </nav> 
-        
-        <main class="px-3" >
-            <h1>Shopping Cart</h1>
-            <p class="lead" > Welcome to Shopping Cart! <br> Jump right in and explore our many products. <br>
-                Feel free to add some of your own and comment on others!</p>
-        </main>
-
-        <footer class="mt-auto text-white-50" style="font-size: 20px;">
-            <p>All Right Reserved &copy; 2023 </p>
-        </footer>
-
-
-    </div>
+<div style="background-repeat: no-repeat;background-size: cover;background-position: center ;height: 100vh;width: 100vw;background-image: url('https://img.freepik.com/premium-photo/businessman-hand-touching-virtual-info-graphics-with-trolley-cart-icons-technology-online-shopping-business-concept_50039-3031.jpg?size=626&ext=jpg&ga=GA1.1.1677199685.1694510181&semt=ais');" >
+<!-- <div style="background-repeat: no-repeat;background-size: cover;background-position: center ;height: 100vh;width: 100vw;background-image: url('https://img.freepik.com/free-photo/e-commerce-online-shopping-sale-concept_53876-64970.jpg?size=626&ext=jpg&ga=GA1.1.1677199685.1694510181&semt=ais');" > -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -62,6 +27,6 @@
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
 
-</body>
+</div>
 
 </html>

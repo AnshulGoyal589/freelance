@@ -3,17 +3,22 @@
 <head>
     <style>
         #form{
-            width:50vw;
-            margin:100px auto;
+            width:30vw;
+            margin:40px auto;
             border:1px solid lightgray;
-            color:white;
+            /* background-color: whitesmoke; */
+            background-color: black;
+            /* color: black; */
+            color: white;
             padding:0px 25px 25px 25px;
+            border-radius: 20px;
         }
         #button{
             margin-top:20px;
         }
         #signIn{
-            color:white;
+            /* color:black; */
+            color: white;
             width:fit-content;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 64px;
@@ -43,9 +48,13 @@
         New to NexusMart?
         <a href="/register">Register</a>
     </div>
-    <button type="submit" class="btn btn-success" id="button">Login</button>
+    <button style="margin-left: 160px;width: 90px;" type="submit" class="btn btn-success" id="button">Login</button>
 
-    <a href="/oauth2/redirect/google"><i class="fa-brands fa-2xl fa-google" style="color: white;"></i></a>
+    <br>
+    <div style="width: 100%;text-align: center;font-size: 25px;" >or</div>
+    
+
+    <a style="text-align: center;width: 100%;margin-left: 100px;font-size: 26px;" href="/oauth2/redirect/google">Login via Google       <i class="fa-brands fa-2xl fa-google" style="color: white;"></i></a>
 
     
   </form>
