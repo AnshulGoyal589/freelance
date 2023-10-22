@@ -1,92 +1,209 @@
 <% layout('layout/boilerplate') -%>
 <head>
     <style>
-        #delete{
-            /* background-color:darkred; */
-            width: fit-content;
-            padding: 5px;
-            border:2px solid #D3D3D3;
-            /* color:white; */
-            background-color:#D3D3D3;
-            text-decoration: none;
-            text-align: center;
-            color:red;
-            display: inline-block;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #show{
-            /* background-color: darkgreen; */
-            width:fit-content;
-            padding: 5px;
-            color:green;
-            background-color: #D3D3D3;
-            text-decoration: none;
-            box-shadow: none;
-            border: none;
-            text-align: center;
-            display: inline-block;
-            margin-left: 10px;
-            margin-bottom: 10px;
+        :root {
+            --primary-bg: #D3D3D3;
+            --text-color: #000;
+            --link-color: #00f;
+            --hover-bg: #f1faee;
+            --delete-bg: #ff0000;
+            --heart-color: #ff0000;
         }
-        #hero:hover{
-            box-shadow:
-                5px 5px 10px white,
-                -5px -5px 10px white;
-            /* background-color: #f1faee !important; */
-            border: 5px solid black !important;
-            z-index: 1000;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: white;
+            color: var(--text-color);
+
+        }
+        .btn {
+            display: inline-block;
+            padding: 5px;
+            border: 2px solid var(--primary-bg);
+            text-align: center;
             cursor: pointer;
         }
-        img:hover{
+        .fa-heart {
+            color: var(--heart-color);
+            display: inline-block;
+            position: relative;
+        }
+        #hero {
+            border: 2px solid var(--text-color);
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-bg);
+           
+        }
+        #hero:hover {
+            box-shadow: 5px 5px 10px white, -5px -5px 10px white;
+            border: 5px solid var(--text-color) !important;
+            cursor: pointer;
+        }
+        img:hover {
             transform: scale(1.1);
             transition-duration: 0.7s;
         }
+        #delete {
+            background-color: var(--delete-bg);
+            color: white;
+        }
+        #show {
+            background-color: #D3D3D3;
+            border: 2px solid #D3D3D3;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }    
     </style>
 </head>
 
+<div style="display: flex;flex-direction: column;background-color: white;">
+    <div style="width: 100%;height: 400px;border: 2px solid black;margin-top: 20px;display: flex;overflow-y: scroll;" >
 
+        <h3>TOP RECOMMENDED PRODUCTS</h3>
     
-
-<div style="width:100%;height:100%;display: flex;flex-wrap: wrap">
-
-    <br>
-    <%for(let product of products){%>
-        <div id="hero" onclick="window.location.href='/products/<%=product._id%>'" style="border:2px solid black;width:350px;display: flex;flex-direction: column;justify-content:center;align-items: center;background-color:#D3D3D3; margin-left:20px;margin-top: 20px;">
-            <div style="height:200px;width:345px;width:100%;overflow: hidden;" id="img"><img src="<%=product.img%>" alt="image not available" style="height:200px;width:345px;width:100%"></div>
-            <h3><%= product.name  %></h3>
-            <!-- <i class="fa-regular fa-heart fa-2xl " style="color: #ff0000;display: inline-block;position: relative;left:140px;bottom:10px"></i> -->
-            <i class="fa-regular fa-heart fa-2xl" id="heartIcon" style="color: #ff0000;display: inline-block;position: relative;left:140px;bottom:10px" onclick="toggleHeartClass(event)"></i>
-            <h4>Price: <%= product.price  %>₹</h4>
-            <h5><%= product.desc  %></h5>
-            <div>
-                <% if(currentUser){ %> 
-                <% if(currentUser.identity==='seller'){ %> 
-                    <form action="/products/<%=product._id%>?_method=DELETE" method="post" style="display: inline-block;">
-                        <button  id="delete" ><i class="fa-solid fa-trash-can fa-xl" style="color: #ff2600;background-color:#D3D3D3 ;"></i><br>DELETE</button>
+        <%for(let product of productss){%>
+            <div onclick="window.location.href='/products/<%=product._id%>'" style="border:2px solid black;width:450px !important;height: 400px;display: flex;flex-direction: column;justify-content:center;align-items: center;background-color:#D3D3D3">
+                <div style="height:200px;width:100%;overflow: hidden;" id="img"><img src="<%=product.img%>" alt="image not available" style="height:200px;width:100%"></div>
+                <h3 style="text-align: center;" ><%= product.name  %></h3>
+                <div style="width: 100%;display: flex;flex-direction: column;align-items: center;margin-bottom: 10px;">
+                    <h5 style="font-weight: 500;" >Price:<%= product.price  %>$</h5>
+                    <div style="text-align: center; height: 80px ; width: 95% ; overflow-y: scroll ;" ><%= product.desc  %></div>
+                </div>
+                <div style="width: 100%;display: flex;justify-content: space-around;"  >
+                    <% if(currentUser){ %> 
+                    <% if(currentUser.identity==='seller'){ %> 
+                        <form action="/products/<%=product._id%>?_method=DELETE" method="post" style="display: inline-block;">
+                            <button  id="delete" ><i class="fa-solid fa-trash-can fa-xl" style="color: #ff2600;background-color:#D3D3D3 ;"></i><br>DELETE</button>
+                        </form>
+                    <% } %>
+                    <% } %>
+                    <form action="/products/<%=product._id%>" method="get" style="display: inline-block;">
+                        <button  id="show" ><i class="fa-solid fa-circle-info fa-2xl" style="color:green;"></i><br></button>
                     </form>
-                <% } %>
-                <% } %>
-                <form action="/products/<%=product._id%>" method="get" style="display: inline-block;">
-                    <button  id="show" ><i class="fa-solid fa-circle-info fa-2xl" style="color:green;"></i><br>DETAILS</button>
-                </form>
+                </div>
             </div>
-        </div>
-    <%}%>
-
+        <%}%>
 
     
+    
+    </div>
+    <div style="display: flex;padding-left: 80px;background-color: white;margin-top: 70px;">
+
+    
+        <div style="width: 330px;border:2px solid black;height: 100vh;padding: 20px;" >
+        
+            <div class="sidebar-main">
+                <div class="ast-filter-wrap"><div id="block-4" class="ast-woo-sidebar-widget widget widget_block"><div data-block-name="woocommerce/product-search" data-has-label="false" data-label="" data-form-id="wc-block-product-search-0" class="wc-block-product-search alignfull wp-block-woocommerce-product-search">
+        
+                    <form action="/products/searchPrice" method="post">
+                        <label for="priceRange">Price Range:</label>
+                        <input type="range" id="priceRange" name="input" min="0" max="129000" step="1000">
+                        <output for="priceRange" id="priceOutput">50000</output>
+                
+                        <br>
+                
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+                <li class="cat-item cat-item-21"><a href="/products/specificCategory/men">Men</a></li>
+                <li class="cat-item cat-item-22"><a href="/products/specificCategory/women">Women</a></li></ul>
+                </div>
+                <form class="d-flex " role="search"  style="position: relative;right:20px" action="/products/specific" method="POST" >
+                    <input class="form-control me-2 col-8" type="search" placeholder="Search" aria-label="Search" id="searchBar" name="input">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                  <form class="d-flex " role="search"  style="width:150px;align-items: center;position: relative;right:15px">
+                    <select id="sizeDropdown" name="size">
+                      <option value="" disabled selected hidden>Sorting Order</option>
+                      <option value="name">Name A to Z</option>
+                      <option value="-name">Name Z to A</option>
+                      <option value="-price">Price H to L</option>
+                      <option value="price">Price L to H</option>
+                    </select>
+                    <span><i id="li" class="fa-solid fa-filter fa-2xl"></i></span>
+                  </form>
+            </div>
+                </div>
+        
+        </div>
+        
+        <div style="width:990px;height:100%;display: flex;flex-wrap: wrap;padding-left: 60px;border:2px solid black">
+        
+            
+            <%for(let product of products){%>
+                <div id="hero" onclick="window.location.href='/products/<%=product._id%>'" style="border:2px solid black;width:250px;height: 400px;display: flex;flex-direction: column;justify-content:center;align-items: center;background-color:#D3D3D3;margin: 20px;">
+                    <div style="height:200px;width:100%;overflow: hidden;" id="img"><img src="<%=product.img%>" alt="image not available" style="height:200px;width:100%"></div>
+                    <h3 style="text-align: center;" ><%= product.name  %></h3>
+                    <!-- <i class="fa-regular fa-heart fa-2xl " style="color: #ff0000;display: inline-block;position: relative;left:140px;bottom:10px"></i> -->
+                    <!-- <i class="fa-regular  fa-heart fa-2xl" id="heartIcon" style="color: #ff0000;display: inline-block;position: relative;left:140px;bottom:0px" onclick="toggleHeartClass(event)"></i> -->
+        
+                    <div style="width: 100%;display: flex;flex-direction: column;align-items: center;margin-bottom: 10px;">
+                        <h5 style="font-weight: 500;" >Price:<%= product.price  %>$</h5>
+                        <div style="text-align: center; height: 80px ; width: 95% ; overflow-y: scroll ;" ><%= product.desc  %></div>
+                    </div>
+                    <div style="width: 100%;display: flex;justify-content: space-around;"  >
+                        <% if(currentUser){ %> 
+                        <% if(currentUser.identity==='seller'){ %> 
+                            <form action="/products/<%=product._id%>?_method=DELETE" method="post" style="display: inline-block;">
+                                <button  id="delete" ><i class="fa-solid fa-trash-can fa-xl" style="color: #ff2600;background-color:#D3D3D3 ;"></i><br>DELETE</button>
+                            </form>
+                        <% } %>
+                        <% } %>
+                        <form action="/products/<%=product._id%>" method="get" style="display: inline-block;">
+                            <button  id="show" ><i class="fa-solid fa-circle-info fa-2xl" style="color:green;"></i><br></button>
+                        </form>
+                    </div>
+                </div>
+            <%}%>
+        
+        
+            
+        
+        
+            </div>
+        
+        
+        
+        </div>
+</div>
 
 
-</section>
 <script>
     function toggleHeartClass(event) {
       var heartIcon = event.target;
-      if (heartIcon.classList.contains("fa-regular")) {
-        heartIcon.classList.remove("fa-regular");
+    //   if (heartIcon.classList.contains("fa-regular")) {
+        // heartIcon.classList.remove("fa-regular");
         heartIcon.classList.add("fa-solid");
-      } else {
-        heartIcon.classList.remove("fa-solid");
-        heartIcon.classList.add("fa-regular");
-      }
+    //   } else {
+    //     heartIcon.classList.remove("fa-solid");
+    //     heartIcon.classList.add("fa-regular");
+    //   }
     }
   </script>
+  <script>
+    document.getElementById('sizeDropdown').addEventListener('change', function() {
+    const selectedSize = this.value; // Get the selected size
+    console.log('Selected size:', selectedSize);
+    window.location.href=`/products/sort/${selectedSize}`;
+  
+  });
+  
+  </script>
+      <script>
+        const priceRange = document.getElementById("priceRange");
+        const priceOutput = document.getElementById("priceOutput");
+
+        priceRange.addEventListener("input", function () {
+            priceOutput.value = priceRange.value;
+        });
+    </script>
 

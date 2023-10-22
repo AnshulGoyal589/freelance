@@ -17,24 +17,130 @@ function checkForNullCharacters(obj) {
     }
     return true; 
   }
-  
+  let i=1;
 
 router.get("/", async (req,res)=>{   
     
-    const products=await Product.find({});
-    res.render("products/homeTemp",{products});
+    const products=await Product.find({});    
+    let productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+
+      let productsss = await Product.find({
+        frequencyOfPurchase: { $gte: i+1 }
+      });
+
+   if(productsss.length>=5){
+    i++;
+    productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+   }
+    res.render("products/homeTemp",{products,productss});
 })
 router.post("/specific", async (req,res)=>{   
     
     const {input}=req.body;
-    const products=await Product.find({name:input});
-    res.render("products/homeTemp",{products});
+    const products=await Product.find({ name: { $regex: input, $options: 'i' } });
+
+    let productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+
+      let productsss = await Product.find({
+        frequencyOfPurchase: { $gte: i+1 }
+      });
+
+   if(productsss.length>=5){
+    i++;
+    productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+   }
+    res.render("products/homeTemp",{products,productss});
+})
+router.post("/searchPrice", async (req,res)=>{   
+     
+    const {input}=req.body;
+    const products = await Product.find({ price: { $lte: input } });
+    let productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+
+      let productsss = await Product.find({
+        frequencyOfPurchase: { $gte: i+1 }
+      });
+
+   if(productsss.length>=5){
+    i++;
+    productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+   }
+
+    res.render("products/homeTemp",{products,productss});
+})
+router.get("/specificCategory/men", async (req,res)=>{   
+    
+    // const {input}=req.body;
+    const products = await Product.find({ gender: { $in: ['Men', 'Anyone'] }});
+    let productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+
+      let productsss = await Product.find({
+        frequencyOfPurchase: { $gte: i+1 }
+      });
+
+   if(productsss.length>=5){
+    i++;
+    productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+   }
+
+    res.render("products/homeTemp",{products,productss});
+})
+router.get("/specificCategory/women", async (req,res)=>{   
+    
+    // const {input}=req.body;
+    const products = await Product.find({ gender: { $in: ['Women', 'Anyone'] }});
+    let productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+
+      let productsss = await Product.find({
+        frequencyOfPurchase: { $gte: i+1 }
+      });
+
+   if(productsss.length>=5){
+    i++;
+    productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+   }
+    res.render("products/homeTemp",{products,productss});
 })
 router.get("/sort/:basis", async (req,res)=>{   
     const {basis}=req.params;
+    console.log(basis);
     const products = await Product.find().sort(basis);
+    let productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+
+      let productsss = await Product.find({
+        frequencyOfPurchase: { $gte: i+1 }
+      });
+
+   if(productsss.length>=5){
+    i++;
+    productss = await Product.find({
+        frequencyOfPurchase: { $gte: i }
+      });
+   }
     // const products=await Product.find({name:input});
-    res.render("products/homeTemp",{products});
+    res.render("products/homeTemp",{products,productss});
 })
 router.post("/new", async (req,res)=>{  
     const product =req.body;
@@ -61,6 +167,7 @@ router.delete("/:productId",isLoggedIn ,async (req,res)=>{
 router.get("/:productId", async(req,res)=>{ 
     const {productId} = req.params; 
     const product = await Product.findById(productId).populate("review");
+    
     res.render("products/show", {product})
 })
 router.get("/:productId/edit",isLoggedIn, async (req,res)=>{ 

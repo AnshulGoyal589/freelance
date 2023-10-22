@@ -1,15 +1,16 @@
 const mongoose =require("mongoose");
 const passportLocalMongoose=require("passport-local-mongoose");
 
-const userSchema=new mongoose.Schema({
+const userSchema=new mongoose.Schema({   
     email:String,
     cart:[
         {
             name:String,
             img:String,
-            price:Number,
+            price:Number, 
             id:mongoose.Schema.Types.ObjectId,
-            count:Number
+            count: { type: Number, default: 0 }
+            
         }
     ],
     totalItems:Number,

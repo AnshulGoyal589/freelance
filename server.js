@@ -1,11 +1,12 @@
 const express = require('express');
+const fs = require('fs');
 const flash = require('connect-flash');
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const colors = require("colors");
 const ejsMate = require("ejs-mate");
-const methodOverride = require("method-override");
+const methodOverride = require("method-override"); 
 const PORT=3000;
 const session = require('express-session');  
 const cookieParser = require('cookie-parser');  
@@ -16,15 +17,45 @@ const FacebookStrategy=require("passport-facebook").Strategy;
 const {isLoggedIn}=require("./middleware");
 const stripe = require('stripe')('sk_test_51NpBEdSFv9GHTIIZJaC6Y5CH8l1deCosoHCr97ypUbB64tPAhHdNM5vMEmeM1MHiQyQcdG09WQQ2CZrL39nekJ63008k53ovGr');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
+const rawData = fs.readFileSync('data.json');
+const responses = JSON.parse(rawData);
+const bodyParser=require('body-parser')
+// require("dotenv").config();
+
+
+
+
+
+// const { Configuration, OpenAIApi } = require('openai');
+// const configuration = new Configuration({
+//   organization: "org-M9PabdHTYifhAyAoRtcITx8W",
+//   apiKey: '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'
+// });
+// const openai = new OpenAIApi(configuration);
+
+const dotenv = require('dotenv');
+const OpenAI = require('openai');
+
+dotenv.config() // Load the environment
+
+const openai = new OpenAI({ key:"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" });
+
+
+
+
+
+app.use(bodyParser.json());
 
 
 const accountSid = 'AC050107307a6c1b98f768259a9233f3e1';
 const authToken = '4f42d34278df05b13ccdd3588cd90ed8';
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/ecommerceWebsite")
+mongoose.connect("mongodb://127.0.0.1:27017/ecommerceWebsite2")
 .then(()=> console.log("db connected sucessfully".yellow))
 .catch((err)=> console.log(err));
+
+
 
 
 const sessionConfig = {
@@ -43,6 +74,7 @@ const productRoutes = require("./routes/productRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const { type } = require('os');
   
 
 app.engine("ejs", ejsMate); 
@@ -77,6 +109,7 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
 
+
   const newUser = new User({ googleId: profile.id , username:profile.displayName , identity:'seller'  });
   newUser.save()
   .then(user => {
@@ -90,34 +123,36 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// passport.use(new GoogleStrategy({
-//   clientID:'456174320355-puub5iuanlrgmcjp5c3fgsu1t7b48pp3.apps.googleusercontent.com',
-//   clientSecret: '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',
-//   callbackURL: '/oauth2/redirect/google',
-//   scope: ['profile']
-// }, async function (issuer, profile, cb) {
-  // try {
-    // const collection = db.collection('users');
-    // console.log(profile);
-    // const existingUser = await User.findOne({ googleId: profile.id });
+app.get('/chat',function(req,res){
+	res.render('products/index');
+});
 
-    // if (!existingUser) {
-    //   const user = {
-    //     googleId: profile.id,
-    //     userame: profile.userame
-    //   };
-    //   const result = await User.create(user);
-    //   await User.save();
-    //   const id = result.insertedId;
-    //   user.id = id;
-    //   return cb(null, user);
-    // }
 
-    // return cb(null, existingUser);
-  // } catch (error) {
-  //   return cb(error);
-  // }
-// }));
+app.get('/chat/predict',function(req,res){
+	console.log(req.query);
+res.render('products/index');
+})
+
+app.post('/chat/predict', (req, res) => {
+  const {userMessage} = req.body;
+
+  let botResponse = 'I\'m sorry, I don\'t understand your question.'; 
+
+  for (const response of responses) {
+    for (const keyword of response.user_input) {
+      if (userMessage.toLowerCase()===keyword) {  
+        botResponse = response.bot_response;
+        break;
+      }
+    }
+  }
+  const chatMessage = {
+    user: userMessage,
+    bot: botResponse,
+  };
+  res.json({ botResponse });
+});
+
 
  
 app.get("/",(req,res)=>{

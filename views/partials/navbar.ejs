@@ -13,12 +13,11 @@
     #abc{
           display: flex;
           padding-top: 11px;
-        }
+        } 
     .main:hover{
-      /* text-decoration: underline !important; */
       text-decoration-skip-ink: auto;
       margin-bottom: 14px !important;
-      border-bottom: 2px solid blue !important; /* Adjust the width and color of the underline */
+      border-bottom: 2px solid blue !important; 
         padding-bottom: 4px !important;
       color: blue !important;
     }
@@ -41,7 +40,7 @@
           <li class="nav-item" >
             
               <a class=" main " href="/products" style="text-decoration: none;color:white;position:relative;">Products</a>   
-          </li>
+          </li>  
           <li class="nav-item">
                 <a class=" main " href="/products/add" style="text-decoration: none;color:white;position:relative;">Add Product</a>
           </li>
@@ -54,20 +53,7 @@
             </i>
           <% } %>
         </ul>
-        <form class="d-flex " role="search"  style="position: relative;right:20px" action="/products/specific" method="POST" >
-          <input class="form-control me-2 col-8" type="search" placeholder="Search" aria-label="Search" id="searchBar" name="input">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        <form class="d-flex " role="search"  style="width:150px;align-items: center;position: relative;right:15px">
-          <select id="sizeDropdown" name="size">
-            <option value="" disabled selected hidden>Sorting Order</option>
-            <option value="name">Name A to Z</option>
-            <option value="-name">Name Z to A</option>
-            <option value="-price">Price H to L</option>
-            <option value="price">Price L to H</option>
-          </select>
-          <span><i id="li" class="fa-solid fa-filter fa-2xl"></i></span>
-        </form>
+        
 <% if(!currentUser){ %>
           <ul id="abc">
             <li id="li" class=" main " ><a href="/login" id="a">Login</a></li>
@@ -84,12 +70,3 @@
       </div>
     </div>
 </nav>
-<script>
-  document.getElementById('sizeDropdown').addEventListener('change', function() {
-  const selectedSize = this.value; // Get the selected size
-  console.log('Selected size:', selectedSize);
-  window.location.href=`/products/sort/${selectedSize}`;
-
-});
-
-</script>

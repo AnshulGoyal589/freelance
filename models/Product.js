@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-
+ 
 const productSchema = new mongoose.Schema({
 
     name : String,
-    price : Number,
+    price : Number,   
     img : String,
-    desc : String,
+    desc : String, 
     review : [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -14,7 +14,12 @@ const productSchema = new mongoose.Schema({
         }
     ],
     status:String,
-    quantity:Number
+    quantity:Number,
+    frequencyOfPurchase: { type: Number, default: 0 },
+    top: { type: Number, default: 0 },
+    gender:String,
+    category:String
+
 
 })
 
