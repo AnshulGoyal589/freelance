@@ -40,7 +40,7 @@ Certainly! Here's a concise "Usage" section for your README.md:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/ecommerce-website.git
+   git clone https://github.com/your-username/Intellishop.git
    ```
 
 2. **Install Dependencies**:
