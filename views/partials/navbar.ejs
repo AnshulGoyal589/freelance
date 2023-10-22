@@ -53,7 +53,7 @@
             </i>
           <% } %>
         </ul>
-        
+         
 <% if(!currentUser){ %>
           <ul id="abc">
             <li id="li" class=" main " ><a href="/login" id="a">Login</a></li>
@@ -61,7 +61,7 @@
           </ul>
         <% }else{ %>
             <ul style="display: flex;align-items: center;justify-content: center;padding-top: 7px;">
-              <li id="li" ><i class="fa-solid fa-user fa-xl"></i><a href="userProfile" style="text-decoration: none;color:white; text-align: center;">
+              <li id="li" ><i class="fa-solid fa-user fa-xl"></i><a href="/userProfile" style="text-decoration: none;color:white; text-align: center;">
                 <%= currentUser.username  %> 
               </a></li>
               <li id="li"><a href="/logout" id="a">Logout</a></li>

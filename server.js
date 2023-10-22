@@ -158,6 +158,9 @@ app.post('/chat/predict', (req, res) => {
 app.get("/",(req,res)=>{
   res.render("products/homePage");
 })
+app.get("/userProfile",(req,res)=>{
+  res.render("products/profileTemp");
+})
 app.get("/loginViaGoogle",(req,res)=>{
   res.render("products/googleIdentity")
 })
