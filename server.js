@@ -23,11 +23,11 @@ const responses = JSON.parse(rawData);
 const bodyParser=require('body-parser');
 
 const dotenv = require('dotenv');
-const OpenAI = require('openai');
+// const OpenAI = require('openai');
 
 dotenv.config() // Load the environment
 
-const openai = new OpenAI({ key:"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" });
+// const openai = new OpenAI({ key:"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" });
 
 
 
@@ -112,35 +112,35 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-app.get('/chat',function(req,res){
-	res.render('products/index');
-});
+// app.get('/chat',function(req,res){
+// 	res.render('products/index');
+// });
 
 
-app.get('/chat/predict',function(req,res){
-	console.log(req.query);
-res.render('products/index');
-})
+// app.get('/chat/predict',function(req,res){
+// 	console.log(req.query);
+// res.render('products/index');
+// })
 
-app.post('/chat/predict', (req, res) => {
-  const {userMessage} = req.body;
+// app.post('/chat/predict', (req, res) => {
+//   const {userMessage} = req.body;
 
-  let botResponse = 'I\'m sorry, I don\'t understand your question.'; 
+//   let botResponse = 'I\'m sorry, I don\'t understand your question.'; 
 
-  for (const response of responses) {
-    for (const keyword of response.user_input) {
-      if (userMessage.toLowerCase()===keyword) {  
-        botResponse = response.bot_response;
-        break;
-      }
-    }
-  }
-  const chatMessage = {
-    user: userMessage,
-    bot: botResponse,
-  };
-  res.json({ botResponse });
-});
+//   for (const response of responses) {
+//     for (const keyword of response.user_input) {
+//       if (userMessage.toLowerCase()===keyword) {  
+//         botResponse = response.bot_response;
+//         break;
+//       }
+//     }
+//   }
+//   const chatMessage = {
+//     user: userMessage,
+//     bot: botResponse,
+//   };
+//   res.json({ botResponse });
+// });
 
 
  
