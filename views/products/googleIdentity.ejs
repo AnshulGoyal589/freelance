@@ -1,15 +1,62 @@
 <% layout('layout/boilerplate') -%>
-<form action="/loginViaGoogle" method="POST">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
 
-    <input type="text" name="identityInput" >
-    <input type="text" value=<%= currentUser.googleId  %> name="googleid" hidden>
-    <button >SUBMIT</button>
+        #form {
+            border: 4px solid black;
+            width: 80%;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
 
-    
-</form>
-<script>
-    const inputt=document.querySelector("#inputt");
-    localStorage.setItem('identityInput', inputt);
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
 
+        #ref {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
 
-</script>
+        #button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            #form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form action="/loginViaGoogle" method="POST" id="form">
+        <label for="ref">Seller/Buyer</label>
+        <input type="text" name="identityInput" id="ref">
+        <br>
+        <input type="text" value=<%= currentUser.googleId  %> name="googleid" hidden>
+        <button id="button">SUBMIT</button>
+    </form>
+    <script>
+        const inputt = document.querySelector("#ref");
+        localStorage.setItem('identityInput', inputt.value);
+    </script>
+</body>

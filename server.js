@@ -16,22 +16,11 @@ const User=require("./models/User");
 const FacebookStrategy=require("passport-facebook").Strategy;
 const {isLoggedIn}=require("./middleware");
 const stripe = require('stripe')('sk_test_51NpBEdSFv9GHTIIZJaC6Y5CH8l1deCosoHCr97ypUbB64tPAhHdNM5vMEmeM1MHiQyQcdG09WQQ2CZrL39nekJ63008k53ovGr');
+// const stripe = require('stripe')(process.env.STRIPE);
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const rawData = fs.readFileSync('data.json');
 const responses = JSON.parse(rawData);
-const bodyParser=require('body-parser')
-// require("dotenv").config();
-
-
-
-
-
-// const { Configuration, OpenAIApi } = require('openai');
-// const configuration = new Configuration({
-//   organization: "org-M9PabdHTYifhAyAoRtcITx8W",
-//   apiKey: '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'
-// });
-// const openai = new OpenAIApi(configuration);
+const bodyParser=require('body-parser');
 
 const dotenv = require('dotenv');
 const OpenAI = require('openai');
@@ -176,6 +165,7 @@ app.post("/loginViaGoogle",async (req,res)=>{
 
   res.redirect("/")
 })
+
 app.post('/:IDD/create-checkout-session',isLoggedIn, async (req, res) => {
   const {IDD}=req.params;
   const session = await stripe.checkout.sessions.create({
@@ -208,8 +198,8 @@ app.get('/oauth2/redirect/google',
   }),
   function(req, res) {
     req.flash('success', `Welcome ${req.user.username}`); 
-  res.redirect('/loginViaGoogle');
-  });
+    res.redirect('/loginViaGoogle');
+});
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);

@@ -8,11 +8,9 @@ const flash = require('connect-flash');
 const twilio = require('twilio');
 var GoogleStrategy = require('passport-google-oidc');
 
-const accountSid = 'AC050107307a6c1b98f768259a9233f3e1';
-const authToken = '4f42d34278df05b13ccdd3588cd90ed8';
+const accountSid = 'AC9346c467c364ea034ee2bf8f5260014e';
+const authToken = '934ba091cc6c943cbc76a44a30667872';
 const client = new twilio(accountSid, authToken);
-
-
 
 const otpGenerator = require('otp-generator');
 
@@ -26,16 +24,11 @@ router.get("/send-email-otp", async(req,res)=>{
 
 })
 
-
-
-
-
 router.get("/register",(req,res)=>{
 
     res.render("auth/register");
     
 })
-
 
 router.post("/register", async (req,res)=>{
 
@@ -52,11 +45,12 @@ router.post("/register", async (req,res)=>{
     }
     
 })
+
 function sendWelcomeSMS(userPhoneNumber) {
   client.messages
     .create({
-      body: 'Welcome to our e-commerce website!',
-      from: '+12536557966',
+      body: 'Good Afternoon Sir. Welcome to our e-commerce website! Hope you would love it!!!',
+      from: '+14705398635',
       // to: "+91"+userPhoneNumber.toString()
       to: "+918168079094"
     })
@@ -64,8 +58,6 @@ function sendWelcomeSMS(userPhoneNumber) {
     .catch(error => console.error('Error sending SMS:', error));
 }
 
-
-   
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true,
