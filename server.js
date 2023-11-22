@@ -88,6 +88,7 @@ app.use( authRoutes);
 app.use( cartRoutes);
 
 
+
 passport.use(new LocalStrategy(User.authenticate()));
 
 passport.use(new GoogleStrategy({
@@ -112,47 +113,47 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// app.get('/chat',function(req,res){
-// 	res.render('products/index');
-// });
+app.get('/chat',function(req,res){
+	res.render('products/index');
+});
 
+app.get('/chat/predict',function(req,res){
+	console.log(req.query);
+res.render('products/index');
+})
 
-// app.get('/chat/predict',function(req,res){
-// 	console.log(req.query);
-// res.render('products/index');
-// })
+app.post('/chat/predict', (req, res) => {
+  const {userMessage} = req.body;
 
-// app.post('/chat/predict', (req, res) => {
-//   const {userMessage} = req.body;
+  let botResponse = 'I\'m sorry, I don\'t understand your question.'; 
 
-//   let botResponse = 'I\'m sorry, I don\'t understand your question.'; 
+  for (const response of responses) {
+    for (const keyword of response.user_input) {
+      if (userMessage.toLowerCase()===keyword) {  
+        botResponse = response.bot_response;
+        break;
+      }
+    }
+  }
+  const chatMessage = {
+    user: userMessage,
+    bot: botResponse,
+  };
+  res.json({ botResponse });
+});
 
-//   for (const response of responses) {
-//     for (const keyword of response.user_input) {
-//       if (userMessage.toLowerCase()===keyword) {  
-//         botResponse = response.bot_response;
-//         break;
-//       }
-//     }
-//   }
-//   const chatMessage = {
-//     user: userMessage,
-//     bot: botResponse,
-//   };
-//   res.json({ botResponse });
-// });
-
-
- 
 app.get("/",(req,res)=>{
   res.render("products/homePage");
 })
+
 app.get("/userProfile",(req,res)=>{
   res.render("products/profileTemp");
 })
+
 app.get("/loginViaGoogle",(req,res)=>{
   res.render("products/googleIdentity")
 })
+
 app.post("/loginViaGoogle",async (req,res)=>{
   const {identityInput,googleid}=req.body;
   await User.updateOne(

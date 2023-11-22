@@ -9,7 +9,7 @@ const twilio = require('twilio');
 var GoogleStrategy = require('passport-google-oidc');
 
 const accountSid = 'AC9346c467c364ea034ee2bf8f5260014e';
-const authToken = '934ba091cc6c943cbc76a44a30667872';
+const authToken = 'e4d8a83988e270bf7fb0a2bd3c5153c2';
 const client = new twilio(accountSid, authToken);
 
 const otpGenerator = require('otp-generator');
