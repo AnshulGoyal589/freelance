@@ -3,7 +3,7 @@ const router =  express.Router();
 const Product = require("../models/Product");
 const {isLoggedIn}=require("../middleware");
 const mongoose = require("mongoose");
-
+const dotenv = require('dotenv');  
 const axios = require('axios');
 const Review = require("../models/Review");
 const app = express();
@@ -130,7 +130,7 @@ router.get("/sort/:basis", async (req,res)=>{
     res.render("products/homeTemp",{products,productss});
 })
 router.get("/new", async (req,res)=>{  
-  const response = await axios.get('http://localhost:8000/product/api'); 
+  const response = await axios.get(`${process.env.BASE_URL}/product/api`); 
     const product = response.data; 
     console.log(response);
     res.redirect("/products");
@@ -153,26 +153,18 @@ router.delete("/:productId",isLoggedIn ,async (req,res)=>{
 //     res.render("products/show", {product})
 // })
 
-router.get("/go/:product._id", async (req, res) => {
-  // const { productIdd:product._id } = req.params;
-  // const productIdd=product._id;
-  console.log(req.params)
-console.log("IIIDDDIDIDI::::",productIdd);
+router.get("/go", async (req, res) => {
+  const productId=req.query.id;
   try {
-    // Validate if the provided productId is a valid ObjectId
-    if (productIdd.endsWith(".jpg")) {
+    if (productId.endsWith(".jpg")) {
       return res.status(400).json({ error: 'Invalid product ID' });
     }
-
-    const product = await Product.findById(mongoose.Types.ObjectId(productIdd)).populate("review");
-
+    const product = await Product.findById(productId).populate("review");
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
-
     res.render("products/show", { product });
   } catch (error) {
-    // Handle the error
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }

@@ -220,7 +220,7 @@
         </div>   
         <div style="width:990px;height:100%;display: flex;flex-wrap: wrap;padding-left: 60px;border:2px solid black;background-color: #edede9;">
             <%for(let product of products){%>
-                <div id="hero" onclick="window.location.href='/products/go/<%=product._id%>'" style="border:2px solid black;width:250px;height: 400px;display: flex;flex-direction: column;justify-content:center;align-items: center;background-color:#D3D3D3;margin: 20px;">
+                <div id="hero" onclick="window.location.href='/products/go?id=<%=product._id%>'" style="border:2px solid black;width:250px;height: 400px;display: flex;flex-direction: column;justify-content:center;align-items: center;background-color:#D3D3D3;margin: 20px;">
                     <div style="height:200px;width:100%;overflow: hidden;" id="img"><img src="<%=product.img%>" alt="image not available" style="height:200px;width:100%"></div>
                     <h3 style="text-align: center;" ><%= product.name  %></h3>
                     <div style="width: 100%;display: flex;flex-direction: column;align-items: center;margin-bottom: 10px;">

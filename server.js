@@ -12,7 +12,6 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User=require("./models/User"); 
-const FacebookStrategy=require("passport-facebook").Strategy;
 const {isLoggedIn}=require("./middleware");
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const rawData = fs.readFileSync('data.json');
@@ -26,12 +25,12 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 app.use(bodyParser.json());
   
-
-
-
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=> console.log("db connected sucessfully".yellow)) 
 .catch((err)=> console.log(err));
+
+
+// app.use('/public', express.static('public'));
 
 
 
