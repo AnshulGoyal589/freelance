@@ -18,7 +18,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const rawData = fs.readFileSync('data.json');
 const responses = JSON.parse(rawData);
 const bodyParser=require('body-parser'); 
-const dotenv = require('dotenv'); 
+const dotenv = require('dotenv');  
 dotenv.config() ;
 
 const PORT= process.env.PORT || 8000;
