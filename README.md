@@ -54,7 +54,7 @@ Certainly! Here's a concise "Usage" section for your README.md:
    ```
 
 4. **Open the Website**:
-   Open the website in your web browser.
+   Open the website in your web browser( https://intellishop.onrender.com/ ).
 
 5. **Explore and Shop**:
    Browse products, add them to your cart, and complete purchases.
