@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGODB_URL)
 .then(()=> console.log("db connected sucessfully".yellow)) 
 .catch((err)=> console.log(err));
 
