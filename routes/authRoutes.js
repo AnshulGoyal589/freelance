@@ -2,27 +2,14 @@ const express=require("express");
 const router=express.Router();
 const mongoose=require("mongoose");
 const User=require("../models/User");
-const Otp=require("../models/Otp");
 const passport = require('passport');
 const flash = require('connect-flash');
 const twilio = require('twilio');
 var GoogleStrategy = require('passport-google-oidc');
 
-const accountSid = 'AC9346c467c364ea034ee2bf8f5260014e';
-const authToken = 'e4d8a83988e270bf7fb0a2bd3c5153c2';
+const accountSid = process.env.TWILIO_ACCOUNT_SID;  
+const authToken = process.env.TWILIO_AUTH_TOKEN;    
 const client = new twilio(accountSid, authToken);
-
-const otpGenerator = require('otp-generator');
-
-router.get("/send-email-otp", async(req,res)=>{
-
-  const otp = otpGenerator.generate(6, { digits: true, alphabets: false, specialChars: false });
-  const userOtp=await Otp.create({
-    email:'anshulgoyal589@gmail.com',
-    otp:otp
-  });
-
-})
 
 router.get("/register",(req,res)=>{
 

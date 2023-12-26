@@ -7,41 +7,30 @@ const mongoose = require("mongoose");
 const colors = require("colors");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override"); 
-const PORT=3000;
 const session = require('express-session');  
-const cookieParser = require('cookie-parser');  
+const cookieParser = require('cookie-parser');   
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User=require("./models/User"); 
 const FacebookStrategy=require("passport-facebook").Strategy;
 const {isLoggedIn}=require("./middleware");
-const stripe = require('stripe')('sk_test_51NpBEdSFv9GHTIIZJaC6Y5CH8l1deCosoHCr97ypUbB64tPAhHdNM5vMEmeM1MHiQyQcdG09WQQ2CZrL39nekJ63008k53ovGr');
-// const stripe = require('stripe')(process.env.STRIPE);
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const rawData = fs.readFileSync('data.json');
 const responses = JSON.parse(rawData);
-const bodyParser=require('body-parser');
+const bodyParser=require('body-parser'); 
+const dotenv = require('dotenv'); 
+dotenv.config() ;
 
-const dotenv = require('dotenv');
-// const OpenAI = require('openai');
-
-dotenv.config() // Load the environment
-
-// const openai = new OpenAI({ key:"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" });
-
-
-
-
+const PORT= process.env.PORT || 8000;
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 app.use(bodyParser.json());
+  
 
 
-const accountSid = 'AC050107307a6c1b98f768259a9233f3e1';
-const authToken = '4f42d34278df05b13ccdd3588cd90ed8';
 
-
-mongoose.connect("mongodb://127.0.0.1:27017/ecommerceWebsite2")
-.then(()=> console.log("db connected sucessfully".yellow))
+mongoose.connect(process.env.MONGO_URL)
+.then(()=> console.log("db connected sucessfully".yellow)) 
 .catch((err)=> console.log(err));
 
 
@@ -63,7 +52,6 @@ const productRoutes = require("./routes/productRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
-const { type } = require('os');
   
 
 app.engine("ejs", ejsMate); 
@@ -71,7 +59,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride("_method")); 
-app.use(cookieParser('keyboardcat'));
+app.use(cookieParser('keyboardcat')); 
 app.use(session(sessionConfig)); 
 app.use(passport.session());
 app.use(passport.authenticate('session'));
@@ -183,8 +171,8 @@ app.post('/:IDD/create-checkout-session',isLoggedIn, async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:3000/success',
-    cancel_url: `http://localhost:3000/products/${IDD}/cart`,
+    success_url: `${process.env.BASE_URL}/success`,
+    cancel_url: `${process.env.BASE_URL}/products/${IDD}/cart`,
   });
 
   res.redirect(303, session.url); 
@@ -212,7 +200,7 @@ passport.deserializeUser(function(user, cb) {
 
 
 app.listen(PORT, () => 
-    console.log("Server listening at port".blue ,`http://localhost:${PORT}`.red)
+    console.log("Server listening at port".blue ,`${process.env.BASE_URL}`.red)
 )
 
 
