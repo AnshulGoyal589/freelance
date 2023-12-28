@@ -20,7 +20,7 @@ router.post("/products/:productId/review", async(req,res)=>{
 
     await product.save();
  
-    res.redirect(`/products/${productId}`);
+    res.redirect(`/products/go?id=${productId}`);
 
 })
 
