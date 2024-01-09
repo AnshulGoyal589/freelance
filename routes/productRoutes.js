@@ -131,10 +131,29 @@ router.get("/sort/:basis", async (req,res)=>{
 })
 router.get("/new", async (req,res)=>{  
   const response = await axios.get(`${process.env.BASE_URL}/product/api`); 
-    const product = response.data; 
-    console.log(response);
-    res.redirect("/products/go");
+  const product = response.data; 
+  console.log(response);
+  res.redirect("/products/go");
 }) 
+router.post("/new", async (req, res) => {
+  try {
+    const { name, price, img, desc } = req.body;
+
+    // Basic input validation
+    if (!name || !price || !img || !desc) {
+      return res.status(400).send("Missing required fields");
+    }
+
+    // Assuming Product is a Mongoose model
+    await Product.insertMany({ name, price, img, desc });
+
+    res.redirect("/products");
+  } catch (error) {
+    console.error("Error inserting data:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 router.get("/addProd", isLoggedIn , (req,res)=>{           
     res.render("products/addTemp"); 
 })

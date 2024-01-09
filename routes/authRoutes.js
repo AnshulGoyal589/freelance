@@ -48,11 +48,11 @@ function sendWelcomeSMS(userPhoneNumber) {
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true,
-    successFlash:true 
+    successFlash:true  
   }), (req, res) => {
     req.flash('success', `Welcome ${req.user.username}`); 
     const userPhoneNumber = req.user.phoneNumber; // Replace with the user's actual phone number
-    sendWelcomeSMS(userPhoneNumber);
+    // sendWelcomeSMS(userPhoneNumber);
     res.redirect('/products'); 
   });
 
