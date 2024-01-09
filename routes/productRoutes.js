@@ -133,9 +133,9 @@ router.get("/new", async (req,res)=>{
   const response = await axios.get(`${process.env.BASE_URL}/product/api`); 
     const product = response.data; 
     console.log(response);
-    res.redirect("/products");
+    res.redirect("/products/go");
 }) 
-router.get("/addProd", (req,res)=>{           
+router.get("/addProd", isLoggedIn , (req,res)=>{           
     res.render("products/addTemp"); 
 })
 router.delete("/:productId",isLoggedIn ,async (req,res)=>{
